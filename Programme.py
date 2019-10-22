@@ -7,7 +7,7 @@ Created on Tue Oct 22 14:10:07 2019
 import autograd
 from autograd import numpy as np
 from math import sqrt
-
+import matplotlib as plt
 def find_seed(g, c=0, eps=2**-26):
     a=0
     b=1
@@ -27,7 +27,7 @@ def find_seed(g, c=0, eps=2**-26):
 #
 #print(find_seed(g))
 def f(x,y):
-    return np.sin(x)+2*np.sin(y)
+    return x**2+y**2
 
 def grad_f(x,y):
     g=autograd.grad
@@ -48,9 +48,23 @@ def prochain_point(f,x,y,delta=0.01):
         
     
 def simple_contour(f, c=0, delta=0.01):
-    t=find_seed(f,c)
+    def g(x):
+        return f(0,x)
+    t=find_seed(g,c)
     if t==None:
         return ([],[])
     else:
-        les_x=t[0]
-        les_y=t[1]
+        les_x=[0]
+        les_y=[t]
+        while (1-les_x[-1])>delta or 1-les_y[-1]>delta:
+            point=prochain_point(f,les_x[-1],les_y[-1],delta)
+            les_x.append(point[0])
+            les_y.append(point[1])
+        return (les_x,les_y)
+        
+X=simple_contour(f)[0]
+Y=simple_contour(f)[1]
+plt.plot(X,Y)
+plt.axis("equal")
+plt.show()
+        
