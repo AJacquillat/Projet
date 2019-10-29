@@ -20,7 +20,7 @@ def find_seed(f,a,b,x, c=0, eps=2**-26):
     elif f(x,b)==c:
         return b
     while (b-a)/2>eps:
-        if f(d,milieu)>=c:
+        if f(x,milieu)>=c:
             b=milieu
         else:
             a=milieu
