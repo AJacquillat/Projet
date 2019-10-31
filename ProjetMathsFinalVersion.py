@@ -37,24 +37,24 @@ def grad_f(x,y):
     g=autograd.grad
     return np.r_[g(f,0)(x,y),g(f,1)(x,y)]
 
-def prochain_point(f,x,y,delta=0.01):
-    '''
-    on part de (x,y) et on détermine le point suivant avec le théorème
-    '''
-    grad=grad_f(x,y)
-    if grad[1]!=0:
-        d_phi=-grad[0]/grad[1]
-        delta2=delta/sqrt(1+d_phi**2)
-        return (x+delta2, y+d_phi*delta2)
-    elif grad[0]!=0:
-        d_phi=-grad[1]/grad[0]
-        delta2=delta/sqrt(1+d_phi**2)
-        return (x+d_phi*delta2,y+delta2)
-    '''
-    explique les disjonctions de cas ;-)
-    '''
-    else:
-        return None
+#def prochain_point(f,x,y,delta=0.01):
+#    '''
+#    on part de (x,y) et on détermine le point suivant avec le théorème
+#    '''
+#    grad=grad_f(x,y)
+#    if grad[1]!=0:
+#        d_phi=-grad[0]/grad[1]
+#        delta2=delta/sqrt(1+d_phi**2)
+#        return (x+delta2, y+d_phi*delta2)
+#    elif grad[0]!=0:
+#        d_phi=-grad[1]/grad[0]
+#        delta2=delta/sqrt(1+d_phi**2)
+#        return (x+d_phi*delta2,y+delta2)
+#    '''
+#    explique les disjonctions de cas ;-)
+#    '''
+#    else:
+#        return None
         
     
 def simple_contour1(f, c=0, delta=0.01):
@@ -100,7 +100,7 @@ la fonction qui suit est une version de simple_contour avec le gradient qui pren
 mais cela ne semble pas utile pour la fonction contour_complexe qui apparament arrive à gérer ça toute seule
 explique vite fait ça pour montrere qu'on a cerné pas mal de problème
 '''
-def simple_contour2.1(f,c=0.0,delta=0.01):
+def simple_contour2_1(f,c=0.0,delta=0.01):
     def grad_f(x,y):
         g=autograd.grad
         return np.r_[g(f,0)(x,y),g(f,1)(x,y)]
@@ -254,9 +254,9 @@ def contour(f, c, xs=[0.0, 1.0], ys=[0.0, 1.0], delta=0.01):
 fin du programme du prof
 '''
 
-xs=np.linspace(-3,4,30)
-ys=np.linspace(-3,4,30)
-for i in range(5):
+xs=np.linspace(-3,4,5)
+ys=np.linspace(-3,4,5)
+for i in range(1):
     level_curves = contour(f,i,xs,ys) 
     for x, y in level_curves:
         matplotlib.pyplot.plot(x, y, 'r')
