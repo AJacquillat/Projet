@@ -254,10 +254,10 @@ def contour(f, c, xs=[0.0, 1.0], ys=[0.0, 1.0], delta=0.01):
 fin du programme du prof
 '''
 
-xs=np.linspace(-3,4,5)
-ys=np.linspace(-3,4,5)
-for i in range(1):
-    level_curves = contour(f,i,xs,ys) 
+xs=np.linspace(-3,4,30)
+ys=np.linspace(-3,4,30)
+for i in range(2):
+    level_curves = contour(f,i+5,xs,ys) 
     for x, y in level_curves:
         matplotlib.pyplot.plot(x, y, 'r')
         pl.axis("equal")
